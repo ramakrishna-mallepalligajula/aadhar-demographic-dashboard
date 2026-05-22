@@ -12,7 +12,7 @@ st.set_page_config(
 st.title("AI-Powered Demographic Analytics Dashboard")
 
 # Load dataset
-df = pd.read_csv("aadhar_data.csv")
+df = pd.read_csv("api_data_aadhar_enrolment_500000_1000000.csv")
 
 # Create total population column
 df["total_population"] = (
