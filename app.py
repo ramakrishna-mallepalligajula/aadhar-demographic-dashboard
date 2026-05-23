@@ -42,7 +42,7 @@ This AI-Powered Demographic Analytics Dashboard analyzes large-scale Aadhaar enr
 """)
 
 # Load dataset
-df = pd.read_csv("api_data_aadhar_enrolment_500000_1000000.csv")
+df = pd.read_csv("aadhar_data.csv")
 
 # Create total population column
 df["total_population"] = (
