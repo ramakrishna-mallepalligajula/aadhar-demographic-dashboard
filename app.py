@@ -11,6 +11,36 @@ st.set_page_config(
 # Title
 st.title("AI-Powered Demographic Analytics Dashboard")
 
+st.markdown("""
+## Project Overview
+
+This AI-Powered Demographic Analytics Dashboard analyzes large-scale Aadhaar enrollment datasets to identify meaningful population patterns, demographic distributions, regional anomalies, and predictive indicators.
+
+### Purpose of the Project
+- Analyze state-wise, district-wise, and pincode-level population distributions
+- Identify demographic trends and unusual population patterns
+- Generate actionable insights for data-driven decision-making
+- Visualize age-group analytics through interactive dashboards
+- Support scalable demographic analysis using real-world datasets
+
+ Key Features
+✅ State-Level Analytics  
+✅ District-Level Insights  
+✅ Population Trend Analysis  
+✅ Anomaly Detection  
+✅ Predictive Indicators  
+✅ Interactive Visualizations  
+✅ Real-Time Filtering Dashboard
+
+ Technologies Used
+- Python
+- Pandas
+- Streamlit
+- Matplotlib
+- Data Analytics
+- Visualization Techniques
+""")
+
 # Load dataset
 df = pd.read_csv("api_data_aadhar_enrolment_500000_1000000.csv")
 
