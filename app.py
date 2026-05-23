@@ -47,6 +47,73 @@ selected_district = st.sidebar.selectbox(
 # Filter district data
 district_df = state_df[state_df["district"] == selected_district]
 
+# TREND ANALYSIS
+
+st.header("Population Trends Analysis")
+
+trend_data = (
+    state_df.groupby("district")["total_population"]
+    .sum()
+    .sort_values(ascending=False)
+)
+
+st.line_chart(trend_data)
+
+# Insight
+highest_growth = trend_data.idxmax()
+
+st.success(
+    f"District with highest population concentration: {highest_growth}"
+)
+
+# ANOMALY DETECTION
+
+st.header("Anomaly Detection")
+
+# Detect unusually low adult population
+anomalies = district_df[
+    district_df["age_18_greater"] < 2
+]
+
+st.subheader("Low Adult Population Areas")
+
+st.dataframe(
+    anomalies[
+        [
+            "district",
+            "pincode",
+            "age_0_5",
+            "age_5_17",
+            "age_18_greater",
+            "total_population"
+        ]
+    ]
+)
+
+# Count anomalies
+st.warning(
+    f"Detected {len(anomalies)} demographic anomaly records."
+)
+
+# PREDICTIVE INDICATORS
+
+st.header("Predictive Indicators")
+
+district_avg = (
+    state_df.groupby("district")["total_population"]
+    .mean()
+    .sort_values(ascending=False)
+)
+
+high_risk = district_avg.head(5)
+
+st.subheader("High Population Indicator Districts")
+
+st.bar_chart(high_risk)
+
+st.info(
+    "These districts show higher demographic concentration and may require additional infrastructure planning."
+)
 
 # STATE LEVEL ANALYTICS
 
