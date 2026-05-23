@@ -267,10 +267,3 @@ top_pincodes = (
 )
 
 st.bar_chart(top_pincodes)
-
-
-# RAW DATA
-
-st.subheader("Raw Dataset")
-
-st.dataframe(district_df.head(100))
