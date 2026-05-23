@@ -267,3 +267,80 @@ top_pincodes = (
 )
 
 st.bar_chart(top_pincodes)
+
+# =========================
+# MACHINE LEARNING MODEL
+# =========================
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+st.header("AI Population Prediction System")
+
+# Features
+X = df[[
+    "age_0_5",
+    "age_5_17",
+    "age_18_greater"
+]]
+
+# Target
+y = df["total_population"]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+# Model
+model = LinearRegression()
+
+# Train
+model.fit(X_train, y_train)
+
+# Predictions
+predictions = model.predict(X_test)
+
+# Accuracy
+mae = mean_absolute_error(y_test, predictions)
+
+st.subheader("Model Performance")
+
+st.write(f"Mean Absolute Error: {mae:.2f}")
+
+# =========================
+# USER INPUT PREDICTION
+# =========================
+
+st.subheader("Predict Population")
+
+child_input = st.number_input(
+    "Age 0-5 Population",
+    min_value=0
+)
+
+teen_input = st.number_input(
+    "Age 5-17 Population",
+    min_value=0
+)
+
+adult_input = st.number_input(
+    "Age 18+ Population",
+    min_value=0
+)
+
+if st.button("Predict Total Population"):
+
+    prediction = model.predict([[
+        child_input,
+        teen_input,
+        adult_input
+    ]])
+
+    st.success(
+        f"Predicted Total Population: {int(prediction[0])}"
+    )
